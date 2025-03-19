@@ -4,6 +4,12 @@ from src.model.error_intentos_insuficientes import ErrorIntentosInsuficientes
 
 
 class Juego:
+    """
+    Representa:
+        El juego al iniciarse
+
+    
+    """
     DIFICULTAD_BAJA = "DIFICULTAD_BAJA"
     DIFICULTAD_MEDIA = "DIFICULTAD_MEDIA"
     DIFICULTAD_ALTA = "DIFICULTAD_ALTA"
@@ -18,9 +24,21 @@ class Juego:
         self.__adivinanza: Adivinanza = None
 
     def obtener_intentos_realizados(self):
+        """
+        Devuelve:
+            intentos realizados por el usuario
+        Returns:
+            int: un mensaje de intentos realizados
+        """
         return self.__intentos_realizados
 
     def obtener_adivinanza(self) -> Adivinanza:
+        """
+        Devuelve: El numero de posiciones de la adivinanza
+
+        Returns: la poscion correcta de la adivinanza
+            
+        """
         return self.__adivinanza
 
     def __generar_palabra(self) -> str:
