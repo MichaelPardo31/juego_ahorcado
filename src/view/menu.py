@@ -3,17 +3,18 @@ import colorama
 from colorama import Fore, Style
 from src.model.juego import Juego
 
-
 class Menu:
     """
-    Representa el menú principal del juego de adivinanza de palabras.
-
-    Attributes:
-        juego (Juego): Instancia del juego que gestiona la lógica de la partida.
+    Representa el menú principal del juego de ahorcadito.
     """
 
     def __init__(self, juego: Juego):
-        colorama.init(autoreset=True)  # Inicializar colorama para Windows
+        """
+        inicializa 
+        Args:
+        juego (Juego): Instancia del juego que gestiona la lógica de la partida.
+        """
+        colorama.init(autoreset=True) 
         self.juego: Juego = juego
 
     def __mostrar_opciones(self):
@@ -25,8 +26,17 @@ class Menu:
     def __pedir_letra(self) -> list[int]:
         letra = input(Fore.YELLOW + "🎮 ¡Ingresa una letra!: ")
         return self.juego.adivinar(letra)
+    """
+    le pide una letra al usuario
+
+    Returns:
+        list[int]: lista con las posiciones de la letra
+    """
 
     def __modificar_configuracion(self):
+        """
+        da opciones de modificacion a la dificultad del juego y incorpora la nueva dificultad
+        """
         print(Fore.GREEN + "1️⃣  Dificultad Baja")
         print(Fore.GREEN + "2️⃣  Dificultad Media")
         print(Fore.GREEN + "3️⃣  Dificultad Alta")
@@ -40,6 +50,11 @@ class Menu:
             self.juego.modificar_dificultad(Juego.DIFICULTAD_ALTA)
 
     def __controlar_opcion_1(self):
+        """
+        controla la opcion de jugar
+
+        maneja la logica de la victoria y los reultados
+        """
         cantidad_posiciones = self.juego.iniciar_partida()
         display = Fore.RED + " _ " * cantidad_posiciones
         print(display)

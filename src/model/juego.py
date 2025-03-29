@@ -2,13 +2,16 @@ from src.model.diccionario import Diccionario
 from src.model.adivinanza import Adivinanza
 from src.model.error_intentos_insuficientes import ErrorIntentosInsuficientes
 
-
 class Juego:
     """
     Representa:
-        El juego al iniciarse
-
-    
+        El juego el juego del ahorcadito.
+        esta clase permite almacenar datos de la dificultad, intentos, palabras,
+        y dar mas intentos segun la difcultad.
+    class attributes:
+        DIFICULTAD_BAJA: selecciona la dificultad baja
+        DIFICULTAD_MEDIA: selecciona la dificultad media
+        DIFICULTAD_ALTA: selecciona la dificultad alta
     """
     DIFICULTAD_BAJA = "DIFICULTAD_BAJA"
     DIFICULTAD_MEDIA = "DIFICULTAD_MEDIA"
@@ -16,7 +19,7 @@ class Juego:
 
     def __init__(self):
         """
-            Inicializa el juego con dificultad baja por defecto y sin una palabra generada.
+            Inicializa el juego con dificultad baja por defecto.
         """
         self.__dificultad = Juego.DIFICULTAD_BAJA
         self.__intentos_realizados: int = 0
@@ -24,40 +27,34 @@ class Juego:
         self.__adivinanza: Adivinanza = None
 
     def obtener_intentos_realizados(self):
-        """
-        Devuelve:
-            intentos realizados por el usuario
-        Returns:
-            int: un mensaje de intentos realizados
-        """
         return self.__intentos_realizados
 
     def obtener_adivinanza(self) -> Adivinanza:
-        """
-        Devuelve: El numero de posiciones de la adivinanza
-
-        Returns: la poscion correcta de la adivinanza
-            
-        """
         return self.__adivinanza
 
     def __generar_palabra(self) -> str:
         return self.__diccionario.obtener_palabra()
 
     def calcular_intentos_permitidos(self) -> int:
+        '''
+        define los intentos  dependiendo de la dificultad escogida.
+        '''
         if self.__dificultad == self.DIFICULTAD_BAJA:
             return 20
         if self.__dificultad == self.DIFICULTAD_MEDIA:
             return 10
         if self.__dificultad == self.DIFICULTAD_ALTA:
             return 5
-
         return 0
 
     def modificar_dificultad(self, dificultad: str) -> None:
         self.__dificultad = dificultad
 
     def iniciar_partida(self) -> int:
+        '''
+        comienza el juego generando la palabra y mostrando los intentos permitidos.
+        returns: cantidad de posiciones de la palabra generada.
+        '''
         palabra = self.__generar_palabra()
         self.__adivinanza: Adivinanza = Adivinanza(palabra)
         self.__intentos_realizados = self.calcular_intentos_permitidos()
@@ -65,14 +62,11 @@ class Juego:
 
     def adivinar(self, letra: str) -> [int]:
         """
-            Intenta adivinar una letra de la palabra.
-
+            Letra ingresada por el usuario para adivinar si es correcta o no.
             Args:
-                letra (str): Letra que el jugador quiere adivinar.
-
+                letra (str): Letra que el jugador ingresa.
             Returns:
-                list[int]: Lista con las posiciones donde aparece la letra en la palabra. Vacía si la letra no está.
-
+                int: posicion de la letra ingresada si es correcta, si no pierdes un intento.
             Raises:
                 ErrorIntentosInsuficientes: Si no quedan intentos disponibles.
         """
@@ -86,3 +80,8 @@ class Juego:
 
     def verificar_triunfo(self) -> bool:
         return self.__adivinanza.verificar_si_hay_triunfo()
+    """
+    verifica si hay un triunfo o una derrota.
+    Returns:
+        bool: True si ganaste, False si no.
+    """

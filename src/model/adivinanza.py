@@ -1,6 +1,6 @@
 class Adivinanza:
     """
-        Representa una palabra a adivinar en el juego del ahorcado.
+        Representa una palabra a adivinar en el juego.
 
         Attributes:
             __letras (list[str]): Lista de caracteres que conforman la palabra a adivinar.
@@ -15,20 +15,15 @@ class Adivinanza:
 
         Args:
             palabra (str): palabra a adivinar
-
-        Atributos de instancia:
-            __posiciones (list[bool]): Lista de booleanos que indican si cada letra ha sido adivinada.
-
         """
 
     def adivinar(self, letra: str) -> [int]:
         """
         Devuelve la posicion correcta de la letra ingresada. 
-
+        Args:
+            letra: letra ingresada en la palabra a adivinar
         Returns:
-            list: Vacia.
-            posicion lista: posiciones_donde_esta_la_letra.
-
+            Int: posicion(es) de si acertaste la letra, una lista vacia si no.
         """
         if letra not in self.__letras:
             return []
@@ -41,39 +36,18 @@ class Adivinanza:
 
     def obtener_letras(self) -> [str]:
         return self.__letras
-    """
-    Devuelve: la letra ingresada
-
-    Returns:
-        list[str]: = list(palabra) (letra ingresada en palabra)
-    """
 
     def obtener_posiciones(self) -> [bool]:
         return self.__posiciones
-    """
-    Devuelve: las posiciones
-
-    Returns:
-        list[bool]: (posicion)
-    """
-
+    
     def obtener_cantidad_posiciones(self) -> int:
         return len(self.__letras)
-    """
-    Devuelve: un entero de cantidad de posiciones
-
-    Returns:
-        int: la cantidad de posiciones
-    """
-
 
     def verificar_si_hay_triunfo(self) -> bool:
         return all(self.__posiciones)
     """
-    Devuelve: bool: Si ganaste o perdiste.
-
+    Verifica si ganaste o perdiste
     Returns:
-        bool: True si todos los elementos son verdaderos
-            False: si algun elemento es falso
+        bool: True si lograste adivinar todas las palabras, False si no.
     """
 
