@@ -1,9 +1,11 @@
-from src.model.diccionario import Diccionario
+from src.model.diccionario_bd import DiccionarioBD
 from src.model.adivinanza import Adivinanza
 from src.model.error_intentos_insuficientes import ErrorIntentosInsuficientes
+from src.model.i_diccionario import IDiccionario
 
 class Juego:
     """
+<<<<<<< HEAD
     Representa:
         El juego el juego del ahorcadito.
         esta clase permite almacenar datos de la dificultad, intentos, palabras,
@@ -12,33 +14,69 @@ class Juego:
         DIFICULTAD_BAJA: selecciona la dificultad baja
         DIFICULTAD_MEDIA: selecciona la dificultad media
         DIFICULTAD_ALTA: selecciona la dificultad alta
+=======
+    Representa la lógica de un juego de adivinanza de palabras.
+
+    Attributes:
+        DIFICULTAD_BAJA (str): Constante para la dificultad baja (20 intentos).
+        DIFICULTAD_MEDIA (str): Constante para la dificultad media (10 intentos).
+        DIFICULTAD_ALTA (str): Constante para la dificultad alta (5 intentos).
+>>>>>>> upstream/main
     """
     DIFICULTAD_BAJA = "DIFICULTAD_BAJA"
     DIFICULTAD_MEDIA = "DIFICULTAD_MEDIA"
     DIFICULTAD_ALTA = "DIFICULTAD_ALTA"
 
-    def __init__(self):
+    def __init__(self, diccionario: IDiccionario):
         """
             Inicializa el juego con dificultad baja por defecto.
         """
-        self.__dificultad = Juego.DIFICULTAD_BAJA
+        self.__dificultad = Juego.DIFICULTAD_ALTA
         self.__intentos_realizados: int = 0
-        self.__diccionario = Diccionario()
+        self.__diccionario: IDiccionario = diccionario
         self.__adivinanza: Adivinanza = None
 
     def obtener_intentos_realizados(self):
+        """
+            Obtiene la cantidad de intentos restantes.
+
+            Returns:
+                int: Número de intentos disponibles.
+        """
         return self.__intentos_realizados
 
     def obtener_adivinanza(self) -> Adivinanza:
+        """
+            Obtiene la instancia actual de la adivinanza.
+
+            Returns:
+                Adivinanza: Objeto que representa la palabra a adivinar.
+        """
+
         return self.__adivinanza
 
     def __generar_palabra(self) -> str:
-        return self.__diccionario.obtener_palabra()
+        """
+            Genera una palabra aleatoria desde el diccionario.
+
+            Returns:
+                str: Palabra seleccionada aleatoriamente.
+        """
+        return self.__diccionario.obtener_palabra("Frutas", "Difícil")
 
     def calcular_intentos_permitidos(self) -> int:
+<<<<<<< HEAD
         '''
         define los intentos  dependiendo de la dificultad escogida.
         '''
+=======
+        """
+            Calcula la cantidad de intentos permitidos según la dificultad.
+
+            Returns:
+                int: Número de intentos permitidos.
+        """
+>>>>>>> upstream/main
         if self.__dificultad == self.DIFICULTAD_BAJA:
             return 20
         if self.__dificultad == self.DIFICULTAD_MEDIA:
@@ -48,19 +86,34 @@ class Juego:
         return 0
 
     def modificar_dificultad(self, dificultad: str) -> None:
+        """
+            Modifica el nivel de dificultad del juego.
+
+            Args:
+                dificultad (str): Nueva dificultad a establecer (DIFICULTAD_BAJA, DIFICULTAD_MEDIA, DIFICULTAD_ALTA).
+        """
         self.__dificultad = dificultad
 
     def iniciar_partida(self) -> int:
+<<<<<<< HEAD
         '''
         comienza el juego generando la palabra y mostrando los intentos permitidos.
         returns: cantidad de posiciones de la palabra generada.
         '''
+=======
+        """
+            Inicia una nueva partida generando una palabra y estableciendo los intentos permitidos.
+
+            Returns:
+                int: Cantidad de letras en la palabra a adivinar.
+        """
+>>>>>>> upstream/main
         palabra = self.__generar_palabra()
         self.__adivinanza: Adivinanza = Adivinanza(palabra)
         self.__intentos_realizados = self.calcular_intentos_permitidos()
         return self.__adivinanza.obtener_cantidad_posiciones()
 
-    def adivinar(self, letra: str) -> [int]:
+    def adivinar(self, letra: str) -> list[int]:
         """
             Letra ingresada por el usuario para adivinar si es correcta o no.
             Args:
@@ -76,12 +129,29 @@ class Juego:
         return self.__adivinanza.adivinar(letra)
 
     def verificar_si_hay_intentos(self) -> bool:
-        return self.__intentos_realizados >= 0
+        """
+            Verifica si quedan intentos disponibles.
+
+            Returns:
+                bool: `True` si hay intentos disponibles, `False` si se agotaron.
+        """
+        print(self.__intentos_realizados)
+        return self.__intentos_realizados > 0
 
     def verificar_triunfo(self) -> bool:
+<<<<<<< HEAD
         return self.__adivinanza.verificar_si_hay_triunfo()
     """
     verifica si hay un triunfo o una derrota.
     Returns:
         bool: True si ganaste, False si no.
     """
+=======
+        """
+            Verifica si el jugador ha adivinado todas las letras de la palabra.
+
+            Returns:
+                bool: `True` si el jugador ha ganado, `False` en caso contrario.
+        """
+        return self.__adivinanza.verificar_si_hay_triunfo()
+>>>>>>> upstream/main
