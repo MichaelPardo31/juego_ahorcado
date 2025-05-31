@@ -1,10 +1,6 @@
 class Adivinanza:
     """
-<<<<<<< HEAD
-        Representa una palabra a adivinar en el juego.
-=======
         Representa una palabra a adivinar en el juego de adivinanzas.
->>>>>>> upstream/main
 
         Attributes:
             __letras (list[str]): Lista de caracteres que conforman la palabra a adivinar.
@@ -28,15 +24,6 @@ class Adivinanza:
             palabra (str): palabra a adivinar
         """
 
-<<<<<<< HEAD
-    def adivinar(self, letra: str) -> [int]:
-        """
-        Devuelve la posicion correcta de la letra ingresada. 
-        Args:
-            letra: letra ingresada en la palabra a adivinar
-        Returns:
-            Int: posicion(es) de si acertaste la letra, una lista vacia si no.
-=======
     def adivinar(self, letra: str) -> list[int]:
         """
             Intenta adivinar una letra dentro de la palabra.
@@ -47,7 +34,6 @@ class Adivinanza:
             Returns:
                 list[int]: Lista con las posiciones donde aparece la letra en la palabra.
                            Si la letra no está en la palabra, la lista estará vacía.
->>>>>>> upstream/main
         """
         if letra not in self.__letras:
             return []

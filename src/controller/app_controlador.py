@@ -5,8 +5,8 @@ from src.model.diccionario_bd import DiccionarioBD
 
 class AppControlador:
     def __init__(self):
-        self.juego = Juego(DiccionarioFile())
-        # self.juego = Juego(DiccionarioBD())
+        # self.juego = Juego(DiccionarioFile())
+        self.juego = Juego(DiccionarioBD())
 
     def iniciar_partida(self):
         return self.juego.iniciar_partida()

@@ -5,23 +5,12 @@ from src.model.i_diccionario import IDiccionario
 
 class Juego:
     """
-<<<<<<< HEAD
-    Representa:
-        El juego el juego del ahorcadito.
-        esta clase permite almacenar datos de la dificultad, intentos, palabras,
-        y dar mas intentos segun la difcultad.
-    class attributes:
-        DIFICULTAD_BAJA: selecciona la dificultad baja
-        DIFICULTAD_MEDIA: selecciona la dificultad media
-        DIFICULTAD_ALTA: selecciona la dificultad alta
-=======
     Representa la lógica de un juego de adivinanza de palabras.
 
     Attributes:
         DIFICULTAD_BAJA (str): Constante para la dificultad baja (20 intentos).
         DIFICULTAD_MEDIA (str): Constante para la dificultad media (10 intentos).
         DIFICULTAD_ALTA (str): Constante para la dificultad alta (5 intentos).
->>>>>>> upstream/main
     """
     DIFICULTAD_BAJA = "DIFICULTAD_BAJA"
     DIFICULTAD_MEDIA = "DIFICULTAD_MEDIA"
@@ -52,7 +41,6 @@ class Juego:
             Returns:
                 Adivinanza: Objeto que representa la palabra a adivinar.
         """
-
         return self.__adivinanza
 
     def __generar_palabra(self) -> str:
@@ -65,18 +53,12 @@ class Juego:
         return self.__diccionario.obtener_palabra("Frutas", "Difícil")
 
     def calcular_intentos_permitidos(self) -> int:
-<<<<<<< HEAD
-        '''
-        define los intentos  dependiendo de la dificultad escogida.
-        '''
-=======
         """
             Calcula la cantidad de intentos permitidos según la dificultad.
 
             Returns:
                 int: Número de intentos permitidos.
         """
->>>>>>> upstream/main
         if self.__dificultad == self.DIFICULTAD_BAJA:
             return 20
         if self.__dificultad == self.DIFICULTAD_MEDIA:
@@ -95,19 +77,12 @@ class Juego:
         self.__dificultad = dificultad
 
     def iniciar_partida(self) -> int:
-<<<<<<< HEAD
-        '''
-        comienza el juego generando la palabra y mostrando los intentos permitidos.
-        returns: cantidad de posiciones de la palabra generada.
-        '''
-=======
         """
             Inicia una nueva partida generando una palabra y estableciendo los intentos permitidos.
 
             Returns:
                 int: Cantidad de letras en la palabra a adivinar.
         """
->>>>>>> upstream/main
         palabra = self.__generar_palabra()
         self.__adivinanza: Adivinanza = Adivinanza(palabra)
         self.__intentos_realizados = self.calcular_intentos_permitidos()
@@ -139,14 +114,6 @@ class Juego:
         return self.__intentos_realizados > 0
 
     def verificar_triunfo(self) -> bool:
-<<<<<<< HEAD
-        return self.__adivinanza.verificar_si_hay_triunfo()
-    """
-    verifica si hay un triunfo o una derrota.
-    Returns:
-        bool: True si ganaste, False si no.
-    """
-=======
         """
             Verifica si el jugador ha adivinado todas las letras de la palabra.
 
@@ -154,4 +121,3 @@ class Juego:
                 bool: `True` si el jugador ha ganado, `False` en caso contrario.
         """
         return self.__adivinanza.verificar_si_hay_triunfo()
->>>>>>> upstream/main

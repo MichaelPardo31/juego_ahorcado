@@ -19,7 +19,7 @@ class DiccionarioBD(IDiccionario):
         """
 
         # Configurar la conexión a PostgreSQL
-        url_conexion = "postgresql://gthomas:@localhost:5432/ahorcado"
+        url_conexion = "postgresql://postgres:root@localhost:5432/ahorcado"
 
         # Crear el motor de conexión
         engine = create_engine(url_conexion, echo=True)
